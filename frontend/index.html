@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+    <title>Autoparks</title>
+  </head>
+  <body>
+    <section class="switch">
+       <span>REĢISTRĀCIJA </span>
+              <input class="checkbox" type="checkbox" id="reg-log" />
+              <label for="reg-log" onclick="flip()"></label><span>MELKLĒŠANA</span>
+    </section>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <form class="main-form">
+      <div class="inputs">
+        <div class="inputs_1">
+          <label>Apliecības numurs</label>
+          <section id="apliecibas_wrapper">
+            <input id="pass_letters" type="text" placeholder="XX" maxlength="2" onkeydown="return /[a-z]/i.test(event.key)" required name="aplieciba_1" value="XX"/>
+          <input type="number" id="apl_nr" placeholder="1234567" maxlength="7" oninput="checkLength(this)"  required name="aplieciba_2" value="12345678"/>
+          </section>
+          <label>Reģistrācijas numurs</label>
+          <section id="reg_wrapper">
+            <input id="reg_letters" type="text" placeholder="XX" maxlength="2" onkeydown="return /[a-z]/i.test(event.key)" required name="reg_1" value="XX"/>
+            <input type="number" id="reg_nr" placeholder="1234" maxlength="4" oninput="checkLength(this)" required name="reg_2"  value="1234"/>
+            </section>
+          <label>Marka</label>
+          <input  type="text" list="markas" onfocusout="changeModel(this)"  placeholder="BMW" required name="marka" value="BMW">
+          
+          <label>Modelis</label>
+          <input id="modelis" type="text" placeholder="X5" required name="modelis" value="X5"/>
+          <label>VIN numurs</label>
+          <input type="text" maxlength="17" minlength="17" onkeypress="checkIQO(event)" onpaste="checkPaste(event)" onkeydown="checkNumLett(event)" placeholder="XXXXXXXXXXXXXXXXX" required name="vin" value="XXXXXXXXXXXXXXXXX"/>
+          <h3>Turētājs</h3>
+          <div class="owner">
+            <label>Pilsēta</label>
+            <select required name="pilseta" >
+              <option value="" selected disabled hidden>JELGAVA</option>
+              <option value="1">Ainaži</option>
+              <option value="2">Aizkraukle</option>
+              <option value="3">Aizpute</option>
+              <option value="4">Aknīste</option>
+              <option value="5">Aloja</option>
+              <option value="6">Alūksne</option>
+              <option value="7">Ape</option>
+              <option value="8">Auce</option>
+              <option value="9">Baldone</option>
+              <option value="10">Baloži</option>
+              <option value="11">Balvi</option>
+              <option value="12">Bauska</option>
+              <option value="13">Brocēni</option>
+              <option value="14">Cēsis</option>
+              <option value="15">Cesvaine</option>
+              <option value="16">Dagda</option>
+              <option value="17">Daugavpils</option>
+              <option value="18">Dobele</option>
+              <option value="19">Durbe</option>
+              <option value="20">Grobiņa</option>
+              <option value="21">Gulbene</option>
+              <option value="22">Ikšķile</option>
+              <option value="23">Ilūkste</option>
+              <option value="24">Jaunjelgava</option>
+              <option value="25">Jēkabpils</option>
+              <option value="26">Jelgava</option>
+              <option value="27">Jūrmala</option>
+              <option value="28">Kandava</option></option>
+              <option value="29">Kārsava</option>
+              <option value="30">Ķegums</option>
+              <option value="31">Krāslava</option>
+              <option value="32">Kuldīga</option>
+              <option value="33">Lielvārde</option>
+              <option value="34">Liepāja</option>
+              <option value="35">Līgatne</option>
+              <option value="36">Limbaži</option>
+              <option value="37">Līvāni</option>
+              <option value="38">Lubāna</option>
+              <option value="39">Ludza</option>
+              <option value="40">Madona</option>
+              <option value="41">Mazsalaca</option>
+              <option value="42">Ogre</option>
+              <option value="43">Olaine</option>
+              <option value="44">Pāvilosta</option>
+              <option value="45">Piltene</option>
+              <option value="46">Pļaviņas</option>
+              <option value="47">Preiļi</option>
+              <option value="48">Priekule</option>
+              <option value="49">Rēzekne</option>
+              <option value="50">Rīga</option>
+              <option value="51">Rūjiena</option>
+              <option value="52">Sabile</option>
+              <option value="53">Salacgrīva</option>
+              <option value="54">Salaspils</option>
+              <option value="55">Saldus</option>
+              <option value="56">Saulkrasti</option>
+              <option value="57">Seda</option>
+              <option value="58">Sigulda</option>
+              <option value="59">Skrunda</option>
+              <option value="60">Smiltene</option>
+              <option value="61">Staicele</option>
+              <option value="62">Stende</option>
+              <option value="63">Strenči</option>
+              <option value="64">Subate</option>
+              <option value="65">Talsi</option>
+              <option value="66">Tukums</option>
+              <option value="67">Valdemārpils</option>
+              <option value="68">Valka</option>
+              <option value="69">Valmiera</option>
+              <option value="70">Vangaži</option>
+              <option value="71">Varakļāni</option>
+              <option value="72">Ventspils</option>
+              <option value="73">Viesīte</option>
+              <option value="74">Viļaka</option>
+              <option value="75">Viļāni</option>
+              <option value="76">Zilupe</option>
+            </select>
+            <label>Iela</label>
+            <input type="text" placeholder="Skolotāju iela 6" required name="iela" value="Skolotāju iela 6"/>
+          </div>
+        </div>
+        <div class="inputs_2">
+          <label>Tipa apstiprinājuma Nr.</label>
+          <input type="text" placeholder="XXX*XXXX/XXX*XXXX*XX" maxlength="20" required name="tipa_nr" value="XXX*XXXX/XXX*XXXX*XX"/>
+          <label>Motora tilpums (cm3)</label>
+          <input type="number" min="1" max="8400" maxlength="4" onkeypress="inpNum(event)" oninput=" checkLength(this)" placeholder="XXXX"  required name="tilpums" value="1234"/>
+          <label>Motora maks. jauda (W)</label>
+          <input type="number" min="1" max="1407745" maxlength="7" onkeypress="inpNum(event)" oninput=" checkLength(this)" placeholder="XXXXXXX"  required name="jauda" value="1234546"/>
+          <label>Degviela</label>
+          <select required name="degviela">
+            <option value="" selected disabled hidden></option>
+            <option value="1">Dīzeļdegviela</option>
+            <option value="2">Benzīns</option>
+            <option value="3">LPG</option>
+            <option value="4">Elektroauto</option>
+          </select>
+          <label>Krāsa</label>
+          <input type="text" list="krasas" required name="krasa" value="melna">
+            
+          <label>Sēdvietas</label>
+          <input type="number" min="1" max="60" maxlength="2" onkeypress="inpNum(event)" oninput=" checkLength(this)" placeholder="XX" required name="sedvietas" value="2"/>
+          <label>Veids</label>
+          <select required name="veids">
+            <option value="" selected disabled hidden></option>
+            <option value="1">Apvidus</option>
+            <option value="2">Hečbeks</option>
+            <option value="3">Kabriolets</option>
+            <option value="4">Kupeja</option>
+            <option value="5">Mikroautobuss</option>
+            <option value="6">Minivens</option>
+            <option value="7">Pikaps</option>
+            <option value="8">Sedans</option>
+            <option value="9">Universāls</option>
+          </select>
+          <label>Piezīmes</label>
+          <input type="text" name="piezimes"/>
+        </div>
+      </div>
+      <button type="submit">IESNIEGT</button>
+      </form>
+        </div>
+        <div class="flip-card-back">
+          <h1>MEKLĒT VIN</h1>
+          <!-- <div class="back"> -->
+            <form class="filter-form">
+            <input type="text" maxlength="17" minlength="17" onkeypress="checkIQO(event)" onpaste="checkPaste(event)" onkeydown="checkNumLett(event)" placeholder="XXXXXXXXXXXXXXXXX" required name="vin"/>
+            <button type="submit">MEKLĒT</button>
+          </form>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Apliecības Nr.</th>
+          <th>Reģistrāciajs Nr.</th>
+          <th>Marka</th>
+          <th>Modelis</th>
+          <th>VIN</th>
+          <th>Pilsēta</th>
+          <th>Iela</th>
+          <th>Tipa Nr.</th>
+          <th>Tilpums</th>
+          <th>Degviela</th>
+          <th>Krāsa</th>
+          <th>Sēdvietas</th>
+          <th>Veids</th>
+          <th>Piezīmes</th>
+          <th>Dzēst</th>
+        </tr>
+      </thead>
+      
+  <section id="table_data"></section>
+
+    </table>
+  </body>
+</html>
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<datalist id="markas">
+  <option>Alfa Romeo</option>
+  <option>Audi</option>
+  <option>BMW</option>
+  <option>Chevrolet</option>
+  <option>Chrysler</option>
+  <option>Citroen</option>
+  <option>Dacia</option>
+  <option>Dodge</option>
+  <option>Fiat</option>
+  <option>Ford</option>
+  <option>Honda</option>
+  <option>Hyundai</option>
+  <option>Infiniti</option>
+  <option>Jaguar</option>
+  <option>Jeep</option>
+  <option>Kia</option>
+  <option>Lancia</option>
+  <option>Land Rover</option>
+  <option>Lexus</option>
+  <option>Mazda</option>
+  <option>Mercedes</option>
+  <option>Mini</option>
+  <option>Mitsubishi</option>
+  <option>Nissan</option>
+  <option>Opel</option>
+  <option>Peugeot</option>
+  <option>Porsche</option>
+  <option>Renault</option>
+  <option>Saab</option>
+  <option>Seat</option>
+  <option>Skoda</option>
+  <option>Smart</option>
+  <option>Subaru</option>
+  <option>Suzuki</option>
+  <option>Toyota</option>
+  <option>Volkswagen</option>
+  <option>Volvo</option>
+  <option>Gaz</option>
+  <option>Vaz</option>
+</datalist>
+<datalist id="krasas">
+  <option>**</option>
+  <option>Balta</option>
+  <option>Brūna</option>
+  <option>Dzeltena</option>
+  <option>Gaiši zila</option>
+  <option>Melna</option>
+  <option>Oranža</option>
+  <option>Pelēka</option>
+  <option>Sarkana</option>
+  <option>Sudraba</option>
+  <option>Tumši sarkana</option>
+  <option >Violeta</option>
+  <option>Zaļa</option>
+  <option">Zila</option>
+  </datalist>
+<datalist id="alfaromeo">
+  <option>159</option>
+  <option>145</option>
+  <option>147</option>
+  <option>156</option>
+  <option>166</option>
+  <option>Brera</option>
+  <option>Crosswagon</option>
+  <option>Guilia</option>
+  <option>Guilietta</option>
+  <option>GT</option>
+  <option>GTV</option>
+  <option>Spider</option>
+  <option>Stelvio</option>
+</datalist>
+<datalist id="audi">
+  <option>A1</option>
+  <option>A2</option>
+  <option>A3</option>
+  <option>A4</option>
+  <option>A5</option>
+  <option>A6</option>
+  <option>A7</option>
+  <option>A8</option>
+  <option>E-tron</option>
+  <option>Q2</option>
+  <option>Q3</option>
+  <option>Q5</option>
+  <option>Q7</option>
+  <option>Q8</option>
+  <option>RS4</option>
+  <option>S2</option>
+  <option>S3</option>
+  <option>S4</option>
+  <option>S5</option>
+  <option>S6</option>
+  <option>S7</option>
+  <option>S8</option>
+  <option>TT</option>
+  <option>V8</option>
+  <option>Allroad</option>
+  <option>Cabrio</option>
+  <option>Cabriolet</option>
+  <option>Coupe</option>
+  <option>Quattro</option>
+  <option>80</option>
+  <option>90</option>
+  <option>100</option>
+  <option>4000</option>
+</datalist>
+<datalist id="bmw">
+  <option >1. sērija</option>
+  <option >116</option>
+  <option >118</option>
+  <option >120</option>
+  <option >135</option>
+  <option >2. sērija</option>
+  <option >216</option>
+  <option >218</option>
+  <option >220</option>
+  <option>225</option>
+  <option >228</option>
+  <option >3. sērija</option>
+  <option >316</option>
+  <option >318</option>
+  <option>320</option>
+  <option >323</option>
+  <option >325</option>
+  <option >328</option>
+  <option >330</option>
+  <option >335</option>
+  <option >340</option>
+  <option >4. sērija</option>
+  <option >420</option>
+  <option >425</option>
+  <option >430</option>
+  <option>435</option>
+  <option >5. sērija</option>
+  <option >520</option>
+  <option >523</option>
+  <option >525</option>
+  <option >528</option>
+  <option>530</option>
+  <option >535</option>
+  <option >540</option>
+  <option >545</option>
+  <option >550</option>
+  <option >6. sērija</option>
+  <option >630</option>
+  <option >635</option>
+  <option >640</option>
+  <option >645</option>
+  <option >650</option>
+  <option >7. sērija</option>
+  <option >725</option>
+  <option>728</option>
+  <option >730</option>
+  <option >732</option>
+  <option >735</option>
+  <option >740</option>
+  <option >745</option>
+  <option >750</option>
+  <option >760</option>
+  <option >8. sērija</option>
+  <option >840</option>
+  <option >850</option>
+  <option >M sērija</option>
+  <option >M1</option>
+  <option >M2</option>
+  <option>M3</option>
+  <option >M4</option>
+  <option >M5</option>
+  <option>M6</option>
+  <option >Z sērija</option>
+  <option >Z3</option>
+  <option >Z4</option>
+  <option>X sērija</option>
+  <option>X1</option>
+  <option >X2</option>
+  <option >X3</option>
+  <option >X4</option>
+  <option >X5</option>
+  <option >X6</option>
+  <option >X7</option>
+  <option >i serija</option>
+  <option>i3</option>
+</datalist>
+<datalist id="chevrolet">
+  <option>Astro</option>
+  <option>AStro Van</option>
+  <option>Aveo</option>
+  <option>Camaro</option>
+  <option>Captiva</option>
+  <option>Chevy Van</option>
+  <option>Corvette</option>
+  <option>Cruze</option>
+  <option>Epica</option>
+  <option>Evanda</option>
+  <option>Express</option>
+  <option>Lacetti</option>
+  <option>Malibu</option>
+  <option>Matiz</option>
+  <option>Nubira</option>
+  <option>Orlando</option>
+  <option>Rezzo</option>
+  <option>S-10</option>
+  <option>Silverado</option>
+  <option>Spark</option>
+  <option>Suburban</option>
+  <option>Trax</option>
+</datalist>
+<datalist id="chrysler">
+  <option>300C</option>
+  <option>300M</option>
+  <option>Crossfire</option>
+  <option>Grand Voyager</option>
+  <option>Neon</option>
+  <option>Pacifica</option>
+  <option>PT Cruiser</option>
+  <option>Sebring</option>
+  <option>Town & Country</option>
+  <option>Voyager</option>
+</datalist>
+<datalist id="dacia">
+  <option>Dokker</option>
+  <option>Duster</option>
+  <option>Logan</option>
+  <option>Sandero</option>
+  <option>Lodgy</option>
+</datalist>
+<datalist id="dodge">
+  <option>Avenger</option>
+  <option>Challenger</option>
+  <option>Dakota</option>
+  <option>Durango</option>
+  <option>RAM</option>
+</datalist>
+<datalist id="fiat">
+  <option>Brava</option>
+  <option>Croma</option>
+  <option>Panda</option>
+  <option>Scudo</option>
+  <option>Ulysse</option>
+</datalist>
+<datalist id="ford">
+  <option>Aerostar</option>
+  <option>B-Max</option>
+  <option>C-Max</option>
+  <option>Courier</option>
+  <option>Crown Victoria</option>
+  <option>Ecoline</option>
+  <option>EcoSport</option>
+  <option>Escort</option>
+  <option>Expedition</option>
+  <option>Explorer</option>
+  <option>F150</option>
+  <option>Fiesta</option>
+  <option>Focus</option>
+  <option>Fusion</option>
+  <option>Galaxy</option>
+  <option>KA</option>
+  <option>Kuga</option>
+  <option>Maverick</option>
+  <option>Mondoe</option>
+  <option>Mustang</option>
+  <option>Ranger</option>
+  <option>Raptor</option>
+  <option>S-Max</option>
+  <option>Scorpio</option>
+  <option>Sierra</option>
+  <option>Tourneo</option>
+  <option>Transit</option>
+</datalist>
+<datalist id="honda">
+  <option>Accord</option>
+  <option>Aerodeck</option>
+  <option>Civic</option>
+  <option>Cr-v</option>
+  <option>FR-v</option>
+  <option>Jazz</option>
+  <option>Legend</option>
+  <option>Logo</option>
+  <option>Prelude</option>
+  <option>Shuttle</option>
+  <option>Stream</option>
+</datalist>
+<datalist id="hyundai">
+  <option>Santa Fe</option>
+  <option>Tucson</option>
+  <option>Porter</option>
+  <option>Grand Starex</option>
+  <option>Sonata</option>
+  <option>Terracan</option>
+  <option>County</option>
+  <option>Avante Elantra</option>
+  <option>Starex</option>
+  <option>Accent</option>
+</datalist>
+<datalist id="infiniti">
+  <option>FX</option>
+  <option>G35</option>
+  <option>M30</option>
+  <option>QX56</option>
+</datalist>
+<datalist id="jaguar">
+  <option>E-Pace</option>
+  <option>F-Pace</option>
+  <option>F-Type</option>
+  <option>S-Type</option>
+  <option>X-Type</option>
+  <option>XE</option>
+  <option>XF</option>
+  <option>XJ</option>
+  <option>XJ40</option>
+  <option>XJS</option>
+  <option>XK</option>
+</datalist>
+<datalist id="jeep">
+  <option>Cherokee</option>
+  <option>Commander</option>
+  <option>Compass</option>
+  <option>Grand Cherokee</option>
+  <option>Wrangler</option>
+</datalist>
+<datalist id="kia">
+  <option>Ceed</option>
+  <option>RIO</option>
+  <option>Soul</option>
+  <option>Sportage</option>
+  <option>XCeed</option>
+</datalist>
+<datalist id="lancia">
+  <option>Delta</option>
+  <option>Thema</option>
+  <option>Voyager</option>
+</datalist>
+<datalist id="landrover">
+  <option>Defender</option>
+  <option>Discovery</option>
+  <option>Freelander</option>
+  <option>Range Rover</option>
+</datalist>
+<datalist id="lexus">
+  <option>CT</option>
+  <option>ES</option>
+  <option>GS</option>
+  <option>GX</option>
+  <option>IS</option>
+  <option>LS</option>
+  <option>LX</option>
+  <option>NX</option>
+  <option>RC</option>
+  <option>RX</option>
+  <option>SC</option>
+  <option>UX</option>
+</datalist>
+<datalist id="mazda">
+  <option>CX-50</option>
+  <option>CX-9</option>
+  <option>CX-30</option>
+  <option>CX-5</option>
+  <option>MX-5 Miata</option>
+</datalist>
+<datalist id="mercedes">
+  <option>A-klase</option>
+  <option>B-klase</option>
+  <option>C-klase</option>
+  <option>CL-klase</option>
+  <option>CLA-klase</option>
+  <option>CLK-klase</option>
+  <option>CLS-klase</option>
+  <option>E-klase</option>
+  <option>G-klase</option>
+  <option>GL-klase</option>
+  <option>GLA-klase</option>
+  <option>GLB-klase</option>
+  <option>GLC-klase</option>
+  <option>GLE-klase</option>
+  <option>GLK-klase</option>
+  <option>GLS-klase</option>
+  <option>ML-klase</option>
+  <option>R-klase</option>
+  <option>S-klase</option>
+  <option>SL-klase</option>
+  <option>SLK-klase</option>
+  <option>V-klase</option>
+  <option>X-klase</option>
+</datalist>
+<datalist id="mini">
+  <option>Cabrio</option>
+  <option>Clubman</option>
+  <option>Cooper</option>
+  <option>Cooper S</option>
+  <option>Countryman</option>
+  <option>Coupe</option>
+  <option>Hatch</option>
+  <option>One</option>
+  <option>Paceman</option>
+</datalist>
+<datalist id="mitsubishi">
+  <option>Eclipse</option>
+  <option>Galant</option>
+  <option>Lancer</option>
+  <option>Lancer Evolution</option>
+  <option>Outlander</option>
+  <option>Space Wagon</option>
+</datalist>
+<datalist id="nissan">
+  <option>Almera</option>
+  <option>Leaf</option>
+  <option>Primera</option>
+  <option>Qashqai</option>
+  <option>X-Trail</option>
+</datalist>
+<datalist id="opel">
+  <option>Astra</option>
+  <option>Combo</option>
+  <option>Corsa</option>
+  <option>Mokka</option>
+  <option>Tigra</option>
+</datalist>
+<datalist id="peugeot">
+  <option>Partner</option>
+  <option>5008</option>
+  <option>308</option>
+  <option>2008</option>
+  <option>307</option>
+</datalist>
+<datalist id="porsche">
+  <option>911</option>
+  <option>924</option>
+  <option>Boxter</option>
+  <option>Cayenne</option>
+  <option>Cayman</option>
+  <option>Macan</option>
+  <option>Panamera</option>
+</datalist>
+<datalist id="renault">
+  <option>Clio</option>
+  <option>Express</option>
+  <option>Latitude</option>
+  <option>Megane</option>
+  <option>Talisman</option>
+</datalist>
+<datalist id="saab">
+  <option>9-3</option>
+  <option>9-5</option>
+  <option>9-7X</option>
+  <option>900</option>
+  <option>9000</option>
+</datalist>
+<datalist id="seat">
+  <option>Ateca</option>
+  <option>Exeo</option>
+  <option>Ibiza</option>
+  <option>Leon</option>
+  <option>Toledo</option>
+</datalist>
+<datalist id="skoda">
+  <option>Fabia</option>
+  <option>Karoq</option>
+  <option>Octavia</option>
+  <option>Superb</option>
+  <option>Yeti</option>
+</datalist>
+<datalist id="smart">
+  <option>ForFour</option>
+  <option>ForTwo</option>
+</datalist>
+<datalist id="subaru">
+  <option>Forester</option>
+  <option>Impreza</option>
+  <option>Legacy</option>
+  <option>XV</option>
+</datalist>
+<datalist id="suzuki">
+  <option>Grand Vitara</option>
+  <option>Jimny</option>
+  <option>Liana</option>
+  <option>Samurai</option>
+  <option>Swift</option>
+  <option>Vitara</option>
+</datalist>
+<datalist id="toyota">
+  <option>Avensis</option>
+  <option>Camry</option>
+  <option>Corolla</option>
+  <option>Hilux</option>
+  <option>Prius</option>
+  <option>Supra</option>
+</datalist>
+<datalist id="volkswagen">
+  <option>Amarok</option>
+  <option>Arteon</option>
+  <option>Beetle</option>
+  <option>Bora</option>
+  <option>Caddy</option>
+  <option>Caravelle</option>
+  <option>Crafter</option>
+  <option>Eos</option>
+  <option>Fox</option>
+  <option>Golf 2</option>
+  <option>Golf 3</option>
+  <option>Golf 4</option>
+  <option>Golf 5</option>
+  <option>Golf 6</option>
+  <option>Golf 7</option>
+  <option>Golf Plus</option>
+  <option>Golf Sportsvan</option>
+  <option>Golf Variant</option>
+  <option>Jetta</option>
+  <option>Kafer</option>
+  <option>LT</option>
+  <option>Lupo</option>
+  <option>Multivan</option>
+  <option>Passat</option>
+  <option>Phaeton</option>
+  <option>Polo</option>
+  <option>Scirocco</option>
+  <option>Sharan</option>
+  <option>T-Cross</option>
+  <option>T-Roc</option>
+  <option>T2</option>
+  <option>T3</option>
+  <option>T4</option>
+  <option>T5</option>
+  <option>T6</option>
+  <option>Taigo</option>
+  <option>Tiguan</option>
+  <option>Touareg</option>
+  <option>Touran</option>
+  <option>Transporter</option>
+</datalist>
+<datalist id="volvo">
+  <option>S40</option>
+  <option>S90</option>
+  <option>V40</option>
+  <option>V90</option>
+  <option>XC40</option>
+  <option>XC90</option>
+</datalist>
+<datalist id="gaz">
+  <option>20</option>
+  <option>21</option>
+  <option>24</option>
+  <option>3102</option>
+  <option>3110</option>
+</datalist>
+<datalist id="vaz">
+  <option>1500</option>
+  <option>2101</option>
+  <option>2106</option>
+  <option>2107</option>
+  <option>21213</option>
+</datalist>
